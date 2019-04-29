@@ -2,9 +2,9 @@
 
 Setup backend server:
 
-git clone https://github.com/bejow/json_fake_backend\
-cd json_fake_backend\
-npm install\
+git clone https://github.com/bejow/json_fake_backend<br>
+cd json_fake_backend<br>
+npm install<br>
 
 To run the backend server:
 
