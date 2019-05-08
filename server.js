@@ -1,15 +1,23 @@
-const express = require('express');
-const expressGraphQL = require('express-graphql');
-const schema = require('./schema/schema');
+var fs = require('fs'),
+  https = require('https'),
+  jsonServer = require('json-server'),
+  server = jsonServer.create(),
+  router = jsonServer.router('db.json'),
+  middleware = jsonServer.defaults();
 
-const app = express();
+var options = {
+  key: fs.readFileSync('./ssl/key.pem'),
+  cert: fs.readFileSync('./ssl/cert.pem')
+};
 
-app.use('/graphql', expressGraphQL({
-    schema,
-    graphiql: true
-}));
+server.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+})
 
-app.listen(4000, () => {
-    console.log('listening');
+server.use(middleware);
+server.use(router);
+
+https.createServer(options, server).listen(3443, function() {
+  console.log("json-server started on port " + 3443);
 });
-

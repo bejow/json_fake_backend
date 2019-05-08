@@ -1,9 +1,5 @@
 {
-  "login":{
-    "uid": "admin",
-    "token": "sheesh"
-  },
-
+  "login": {},
   "settings": {
     "no_light_time": "3600",
     "light_time": "7200",
